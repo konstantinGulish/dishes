@@ -39,6 +39,9 @@
         <tr th:each="dish : ${dishes}">
             <td th:text="${dish.name}"></td>
             <td>
+                <span th:if="${dish.img}!=null">
+                    <img height="100px" th:src="${dish.img}"/>
+                </span>
                 <span th:if="${dish.imgUrl}!=null">
                  <img height="100px" th:src="${dish.imgUrl}" alt="image of a dish"></a>
                 </span>

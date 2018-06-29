@@ -21,7 +21,6 @@ public class Dish {
     @Size(min=10)
     private String description;
 
-    @NotEmpty
     private String imgUrl;
 
     @OneToMany(mappedBy = "dish")
@@ -29,6 +28,8 @@ public class Dish {
 
     @OneToMany(mappedBy = "dish")
     private Set<Nasty> nasties;
+
+    private String img;
 
     public Dish() {
         tasties = new HashSet<>();
@@ -57,6 +58,14 @@ public class Dish {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getImgUrl() {

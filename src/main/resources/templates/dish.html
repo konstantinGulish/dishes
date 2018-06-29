@@ -23,6 +23,7 @@
 <div class="container">
     <form class="" th:action="@{/process}"
           th:object="${dish}"
+          enctype="multipart/form-data"
           method="post">
         <div class="form-group">
             <input type="hidden" th:field="*{id}"/>
@@ -47,6 +48,7 @@
                  th:errors="*{imgUrl}"></div><br/>
             <br/>
         </div>
+        <input type="file" name="file" /><br/><br/>
         <input class="btn btn-primary" type="submit" value="SUBMIT"/>
     </form>
 </div>
