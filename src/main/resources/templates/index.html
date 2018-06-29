@@ -6,8 +6,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 </head>
 <body>
-<div class = "container">
-    <h1>Tasty or Nasty?</h1>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="/">TastyOrNasty</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- Main jumbotron -->
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-3 text-center text-success">Tasty or Nasty?</h1>
+    </div>
+</div>
     <table class ="table">
         <tr>
             <th>Image</th>
@@ -27,15 +45,18 @@
             </td>
             <td th:text="${dish.description}"></td>
             <td>
-                <form th:action="@{/tasty/{id}(id=${dish.id})}"><button>Tasty</button></form>
+                <form th:action="@{/tasty/{id}(id=${dish.id})}"><button class="btn btn-success">Tasty</button></form>
                 <span th:each="eachTasty:${dish}" th:text="${#lists.size(dish.tasties)}"></span>
             </td>
             <td>
-                <form th:action="@{/nasty/{id}(id=${dish.id})}"><button>Nasty</button></form>
+                <form th:action="@{/nasty/{id}(id=${dish.id})}"><button class="btn btn-danger">Nasty</button></form>
                 <span th:each="eachNasty:${dish}" th:text="${#lists.size(dish.nasties)}"></span>
             </td>
+            <td>
+                <span class="text-success"th:each="eachVote:${dish}" th:if="${#lists.size(dish.tasties)}>${#lists.size(dish.nasties)}">Tasty</span>
+                <span class="text-danger"th:each="eachVote:${dish}" th:if="${#lists.size(dish.nasties)}>${#lists.size(dish.tasties)}">Nasty</span>
+            </td>
     </table>
-    <a href="/adddish"><button>Add Dish</button></a><br/>
-</div>
+    <a href="/adddish"><button class="btn-primary">Add Dish</button></a><br/>
 </body>
 </html>

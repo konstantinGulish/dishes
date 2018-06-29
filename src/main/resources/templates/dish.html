@@ -6,13 +6,27 @@
     <title>Add your dish</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="/">TastyOrNasty</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
 <div class="container">
-    <h1>Add a Dish </h1>
-    <form th:action="@{/process}"
+    <form class="" th:action="@{/process}"
           th:object="${dish}"
           method="post">
         <div class="form-group">
             <input type="hidden" th:field="*{id}"/>
+            <br/><br/><br/>
             Name of the dish: <br/>
             <input type="text" th:field="*{name}"/>
             <div th:if="${#fields.hasErrors('name')}"
@@ -21,7 +35,7 @@
         </div>
         <div class="form-group">
             Description of the dish: <br/>
-            <textarea rows="10" th:field="*{description}"/>
+            <textarea rows="10" cols="50" th:field="*{description}"/>
             <div th:if="${#fields.hasErrors('description')}"
                  th:errors="*{description}"></div><br/>
             <br/>
@@ -32,7 +46,8 @@
             <div th:if="${#fields.hasErrors('imgUrl')}"
                  th:errors="*{imgUrl}"></div><br/>
             <br/>
-        <input type="submit" value="SUBMIT"/>
+        </div>
+        <input class="btn btn-primary" type="submit" value="SUBMIT"/>
     </form>
 </div>
 </body>
