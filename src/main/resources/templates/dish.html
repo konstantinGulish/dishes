@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Add your dish</title>
+</head>
+<body>
+<div class="container">
+    <h1>Add a Dish </h1>
+    <form th:action="@{/process}"
+          th:object="${dish}"
+          method="post">
+        <div class="form-group">
+            <input type="hidden" th:field="*{id}"/>
+            Name of the dish: <br/>
+            <input type="text" th:field="*{name}"/>
+            <div th:if="${#fields.hasErrors('name')}"
+                 th:errors="*{name}"></div><br/>
+            <br/>
+        </div>
+        <div class="form-group">
+            Description of the dish: <br/>
+            <textarea rows="10" th:field="*{description}"/>
+            <div th:if="${#fields.hasErrors('description')}"
+                 th:errors="*{description}"></div><br/>
+            <br/>
+        </div>
+        <div class="form-group">
+            Link to the Image of the Dish: <br/>
+            <input type="text" th:field="*{imgUrl}"/>
+            <div th:if="${#fields.hasErrors('imgUrl')}"
+                 th:errors="*{imgUrl}"></div><br/>
+            <br/>
+        <input type="submit" value="SUBMIT"/>
+    </form>
+</div>
+</body>
+</html>

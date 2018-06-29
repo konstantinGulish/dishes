@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dishes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class = "container">
+    <h1>Tasty or Nasty?</h1>
+    <table class ="table">
+        <tr>
+            <th>Image</th>
+            <th>Dish</th><br/>
+            <th>Description</th><br/>
+            <th>Tasty</th><br/>
+            <th>Nasty</th><br/>
+            <th>Overall</th>
+
+        </tr>
+        <tr th:each="dish : ${dishes}">
+            <td th:text="${dish.name}"></td>
+            <td>
+                <span th:if="${dish.imgUrl}!=null">
+                 <img height="100px" th:src="${dish.imgUrl}" alt="image of a dish"></a>
+                </span>
+            </td>
+            <td th:text="${dish.description}"></td>
+            <td>
+                <form th:action="@{/tasty/{id}(id=${dish.id})}"><button>Tasty</button></form>
+                <span th:each="eachTasty:${dish}" th:text="${#lists.size(dish.tasties)}"></span>
+            </td>
+            <td>
+                <form th:action="@{/nasty/{id}(id=${dish.id})}"><button>Nasty</button></form>
+                <span th:each="eachNasty:${dish}" th:text="${#lists.size(dish.nasties)}"></span>
+            </td>
+    </table>
+    <a href="/adddish"><button>Add Dish</button></a><br/>
+</div>
+</body>
+</html>
